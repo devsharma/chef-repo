@@ -9,23 +9,23 @@ Vagrant.configure("2") do |config|
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
-
+  config.omnibus.chef_version = :latest
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "opscode-ubuntu-12.04-i386"
+  config.vm.box = "opscode-ubuntu-14.04"
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
-  config.vm.box_url = "https://opscode-vm.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04-i386_provisionerless.box"
+  config.vm.box_url = "http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box"
 
   # This can be set to the host name you wish the guest machine to have. Vagrant
   # will automatically execute the configuration necessary to make this happen.
-  config.vm.hostname = "dev00-starter"
+  # config.vm.hostname = "starter"
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # port 8080 on the virtual machine is forwarded to port 9090 on the host.
   # This will allow the virtual machine to communicate of the common proxy port 8080.
-  config.vm.network :forwarded_port, guest: 8080, host: 9090
+  # config.vm.network :forwarded_port, guest: 8080, host: 9090
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -75,9 +75,10 @@ Vagrant.configure("2") do |config|
   # Enable provisioning with chef server, specifying the chef server URL,
   # and the path to the validation key (relative to this Vagrantfile).
   #
-  # config.vm.provision :chef_client do |chef|
-  #   chef.chef_server_url = "https://api.opscode.com/organizations/dope"
-  #   chef.validation_client_name = "dope-validator"
-  #   chef.validation_key_path = ".chef/dope-validator.pem"
-  # end
+   config.vm.provision :chef_client do |chef|
+     chef.chef_server_url = "https://api.opscode.com/organizations/dope"
+     chef.validation_client_name = "dope-validator"
+     chef.validation_key_path = ".chef/dope-validator.pem"
+     chef.node_name = "dev_vm"
+   end
 end
