@@ -1,0 +1,16 @@
+{
+  "name": "base",
+  "description": "Comman recpies for the base server configurations",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+  },
+  "override_attributes": {
+  },
+  "chef_type": "role",
+  "run_list": [
+    "recipe[apt]",
+    "recipe[omnibus_updater]"
+  ],
+  "env_run_lists": {
+  }
+}
