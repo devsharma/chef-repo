@@ -49,7 +49,7 @@ GEM
       net-ssh-multi (~> 1.1)
       ohai (~> 6.0)
       pry (~> 0.9)
-      puma (~> 1.6)
+      puma (~> 4.3.8)
       rest-client (>= 1.0.4, < 1.7.0)
       yajl-ruby (~> 1.1)
     chef-zero (1.7.3)
